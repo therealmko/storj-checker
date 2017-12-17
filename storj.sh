@@ -5,8 +5,9 @@
 #Creator: therealmko
 
 # define script variables
-STORJ_HOST="<Storj static ip, hostname or DDNS hostname>"
-STORJ_PORT="<Forwarded port number>"
+STORJ_HOST="mkoning.homelinux.com"
+STORJ_PORT="4000"
+STORJ_CONFIG="/storj/config/config.json"
 
 ############################################
 #No need to change anything after this line#
@@ -27,12 +28,12 @@ usage(){
 
 # check Storj versions
 storj_version(){
-	sudo docker exec storj storjshare -Version
+	docker exec storj storjshare -Version
 }
 
 # start Storj daemon and share
 storj_startup(){
-	sudo docker exec storj storjshare daemon && sudo docker exec storj storjshare start --config /storj/config/config.json
+	sudo docker exec storj storjshare daemon && sudo docker exec storj storjshare start --config ${STORJ_CONFIG}
 }
 
 # display Storj status table
